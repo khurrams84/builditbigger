@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.udacity.javajokeslib.Jokes;
+import com.udacity.jokedisplay.JokeActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,6 +46,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         //Toast.makeText(this, Jokes.getNewJoke(), Toast.LENGTH_SHORT).show();
+        new EndpointsAsyncTask(new EndpointsAsyncTask.AsyncResponse() {
+            @Override
+            public void processFinish(String output) {
+                Intent intent = new Intent(MainActivity.this,  JokeActivity.class);
+                intent.putExtra("joke", output);
+                MainActivity.this.startActivity(intent);
+            }
+
+            @Override
+            public void processError(Exception error) {
+                Toast.makeText(MainActivity.this, "Cannot connect to api: " + error.toString(), Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+        }).execute(this);
 
     }
 

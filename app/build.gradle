@@ -21,7 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-
+        flavorDimensions "default"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,6 +31,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        free {
+
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+        paid {
+
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+    }
+
+    /*testOptions {
+        unitTests.returnDefaultValues = true
+    }*/
 }
 
 dependencies {
@@ -54,3 +70,12 @@ dependencies {
 }
 
 
+configurations.all {
+
+    resolutionStrategy {
+
+        force 'com.android.support:support-v4:27.1.1'
+
+    }
+
+}
