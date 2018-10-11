@@ -44,16 +44,18 @@ android {
         }
     }
 
-    /*testOptions {
+    testOptions {
         unitTests.returnDefaultValues = true
-    }*/
+    }
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    //implementation 'com.google.android.gms:play-services-ads:15.0.1'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
@@ -67,6 +69,8 @@ dependencies {
     implementation project(':javajokeslib')
     implementation project(':jokedisplay')
     //implementation project(path: ':backend', configuration: 'android-endpoints')
+
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.1'
 }
 
 
