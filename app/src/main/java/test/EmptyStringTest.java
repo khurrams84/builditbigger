@@ -21,7 +21,7 @@ public class EmptyStringTest extends AndroidTestCase {
             @Override
             public void processFinish(String output) {
                 assertNotNull(output);
-                //signal.countDown();
+                //signal.countDown(); khurram
             }
 
             @Override
